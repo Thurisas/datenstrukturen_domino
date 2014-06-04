@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
 
         dominoList* myDominoList = new dominoList;
 
-
         ifstream dominoInpute( filename );
 
         if( dominoInpute.is_open())
@@ -51,6 +50,7 @@ int main(int argc, char *argv[])
 
             myDominoList->printList();
 
+            myDominoList->clearList();
         }
         else
         {

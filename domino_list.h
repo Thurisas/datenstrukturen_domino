@@ -17,12 +17,26 @@ class dominoList
 
         void addDominoNode(dominoNode*);
         void printList();
+        void clearList();
 
 };
 
 dominoList::dominoList()
 {
     this->setHead( NULL );
+}
+
+void dominoList::clearList()
+{
+    while(this->getHead() != NULL )
+    {
+        dominoNode* tmpNode  = this->getHead();
+        this->setHead( this->getHead()->getNext() );
+        delete tmpNode->getDominoInfo();
+        delete tmpNode;
+
+        std::cout << "deleted domino";
+    }
 }
 
 void dominoList::setHead(dominoNode * head)
