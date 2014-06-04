@@ -1,3 +1,4 @@
 *.layout
 *.cbp
-
+*.autosave
+*.pro
