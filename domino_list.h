@@ -1,39 +1,85 @@
 #ifndef DOMINO_LIST_H
 #define DOMINO_LIST_H
+#include <iostream>
+#include "domino_node.h"
+#include "domino.h"
 
-class DominoList
+class dominoList
 {
     private:
-        DominoNode* head;
+        dominoNode* head;
 
     public:
-        setDominoList()
-        {
-            this->head = NULL;
-        }
+        dominoList();
 
-        addDomino(int LeftSide, int RightSide)
-        {
-            DominoNode* tmp = new DominoNode;
+        dominoNode* getHead();
+        void setHead(dominoNode*);
 
-            if(this->head==NULL)
-            {
-                this->head = tmp;
-                this->next = NULL;
-            }
-            else
-            {
-                do
-                {
-                    this->head = this->next;
-                }
-                while(this->next!=NULL)
-                this->next = tmp;
+        void addDominoNode(dominoNode*);
+        void printList();
 
-            }
-        }
+};
+
+dominoList::dominoList()
+{
+    this->setHead( NULL );
+}
+
+void dominoList::setHead(dominoNode * head)
+{
+    this->head = head;
+}
+
+dominoNode* dominoList::getHead()
+{
+    return this->head;
 }
 
 
+void dominoList::printList()
+{
+    dominoNode* tmpNode = this->getHead();
+    while(tmpNode != NULL)
+    {
+        std::cout << "["
+             << tmpNode->
+                getDominoInfo()->getLeftSide()
+             << ":"
+             << tmpNode->getDominoInfo()->getRightSide()
+             << "]"
+             << std::endl;
+        tmpNode = tmpNode->getNext();
+    }
+}
+
+
+/**
+ * @brief dominoList::addDominoNode
+ *
+ * insert sinlge domino at tail, pls notice that only one single domino will be added no list!
+ *
+ * @param newDominoNode
+ */
+void dominoList::addDominoNode(dominoNode* newDominoNode)
+{
+
+    if( this->getHead() == NULL)
+    {
+        this->setHead( newDominoNode );
+        this->getHead()->setNext( NULL );
+    }
+    else
+    {
+        dominoNode* tmpNode = this->getHead();
+
+        while(tmpNode->getNext() != NULL )
+        {
+            tmpNode = tmpNode->getNext();
+        }
+
+        tmpNode->setNext( newDominoNode );
+        newDominoNode->setNext( NULL );
+    }
+}
 
 #endif // DOMINO_LIST_H

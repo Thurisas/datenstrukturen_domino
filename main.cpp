@@ -1,22 +1,71 @@
 #include <fstream>
 #include <iostream>
 
+#include "domino.h"
+#include "domino_node.h"
+#include "domino_list.h"
+
 using namespace std;
 
-void readFile( char* filename[] )
+int main(int argc, char *argv[])
 {
-    ifstream datei;
-    datei.open(filename[1], ios_base::in);
+    if ( argc == 2 ) {
+                cout << "Datei " << argv[1] << " wird eingelesen"<< endl;
+
+
+        char* filename = argv[1];
+        int numberOfDominos = 0;
+
+        dominoNode* tmpNode = NULL;
+
+        domino* tmpDomino = NULL;
+        int tmpLeftSide = -1;
+        int tmpRightSide = -1;
+
+        dominoList* myDominoList = new dominoList;
+
+
+        ifstream dominoInpute( filename );
+
+        if( dominoInpute.is_open())
+        {
+            dominoInpute >> numberOfDominos;
+
+            for( int i = numberOfDominos; i > 0; i--)
+            {
+                tmpDomino = new domino;
+
+                dominoInpute >> tmpLeftSide;
+                dominoInpute >> tmpRightSide;
+
+                tmpDomino->setLeftSide(tmpLeftSide);
+                tmpDomino->setRightSide(tmpRightSide);
+
+                tmpNode = new dominoNode;
+                tmpNode->setDominoInfo(tmpDomino);
+
+                myDominoList->addDominoNode(tmpNode);
+
+            }
+            dominoInpute.close();
+
+            myDominoList->printList();
+
+        }
+        else
+        {
+            cout << "Unable to open file";
+            return 1;
+        }
+
+    } else {
+        cout << "Wrong number of parameters given" << endl;
+        return 1;
+    }
+
+    return 0;
 }
 
-int main( int argc, char *argv[] )
-{
-    cout << "Datei" << argv[1] << "wird eingelesen"<< endl;
-
-
-    //TODO: read domino stones
-    //TODO: ... and store to simplechained list
 
 
 
-}
