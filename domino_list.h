@@ -1,8 +1,7 @@
 #ifndef DOMINO_LIST_H
 #define DOMINO_LIST_H
 #include <iostream>
-#include "domino_node.h"
-#include "domino.h"
+
 
 class dominoList
 {
@@ -34,8 +33,6 @@ void dominoList::clearList()
         this->setHead( this->getHead()->getNext() );
         delete tmpNode->getDominoInfo();
         delete tmpNode;
-
-        std::cout << "deleted domino";
     }
 }
 
