@@ -4,7 +4,7 @@
 #include "domino.h"
 #include "domino_node.h"
 #include "domino_list.h"
-#include "ring.h"
+#include "ring_node.h"
 #include "ring_list.h"
 
 using namespace std;
@@ -51,6 +51,17 @@ int main(int argc, char *argv[])
             dominoInpute.close();
 
             myDominoList->printList();
+
+            ringList* myRingLists = new ringList;
+            ringNode* tmpRingNode = new ringNode;
+
+            while(tmpRingNode->buildRing(myDominoList)== true )
+            {
+            myRingLists->addRingNode(tmpRingNode);
+            tmpRingNode = new ringNode;
+            }
+
+            myRingLists->printList();
 
 
 

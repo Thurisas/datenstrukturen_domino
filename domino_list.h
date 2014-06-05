@@ -17,12 +17,50 @@ class dominoList
         void addDominoNode(dominoNode*);
         void printList();
         void clearList();
+        void deleteNode(dominoNode*);
+        dominoNode* searchDominoNode(int);
 
 };
 
 dominoList::dominoList()
 {
     this->setHead( NULL );
+}
+
+dominoNode* dominoList::searchDominoNode(int z)
+{
+    dominoNode* tmp = getHead();
+    while(tmp != NULL)
+    {
+        if(tmp->getDominoInfo()->getLeftSide() == z) return tmp;
+        else if(tmp->getDominoInfo()->getRightSide() == z)
+        {
+            tmp->getDominoInfo()->swap();
+            return tmp;
+        }
+        tmp = tmp->getNext();
+    }
+    return NULL;
+}
+
+void dominoList::deleteNode(dominoNode* node)
+{
+    dominoNode* tmp = getHead();
+    if(tmp != NULL)
+    {
+        if(tmp==node) setHead(tmp->getNext());
+        else
+        {
+            while(tmp->getNext() != node && tmp != NULL )
+            {
+                tmp = tmp->getNext();
+            }
+            if(tmp != NULL)
+            {
+                tmp->setNext(tmp->getNext()->getNext());
+            }
+        }
+    }
 }
 
 void dominoList::clearList()
@@ -57,10 +95,10 @@ void dominoList::printList()
                 getDominoInfo()->getLeftSide()
              << ":"
              << tmpNode->getDominoInfo()->getRightSide()
-             << "]"
-             << std::endl;
-        tmpNode = tmpNode->getNext();
+             << "]  ";
+             tmpNode = tmpNode->getNext();
     }
+    std::cout << std::endl;
 }
 
 

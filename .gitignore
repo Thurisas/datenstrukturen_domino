@@ -3,3 +3,6 @@
 *.autosave
 *.pro
 *.pro.user
+*.depend
+bin/
+obj/
