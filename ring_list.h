@@ -60,8 +60,8 @@ void ringList::printList()
     while(tmpNodeRing != NULL)
     {
 
-        dominoNode* tmpNodeDomino = this->getHead()->getHead();
-        while(tmpNodeDomino != NULL)
+        dominoNode* tmpNodeDomino = tmpNodeRing->getHead();
+        do
         {
             std::cout << "["
                 << tmpNodeDomino->getDominoInfo()->getLeftSide()
@@ -70,6 +70,7 @@ void ringList::printList()
                 << "]  ";
             tmpNodeDomino = tmpNodeDomino->getNext();
         }
+        while(tmpNodeDomino != tmpNodeRing->getHead());
       std::cout<< std::endl;
       tmpNodeRing = tmpNodeRing->getNext();
     }
