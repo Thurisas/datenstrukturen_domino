@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     if ( argc == 2 ) {
-                cout << "Datei " << argv[1] << " wird eingelesen"<< endl;
+        cout << "Datei " << argv[1] << " wird eingelesen"<< endl;
 
 
         char* filename = argv[1];
@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
         dominoList* myDominoList = new dominoList;
 
         ifstream dominoInpute( filename );
+
+        //read and add the dominos from the file to dominoList
 
         if( dominoInpute.is_open())
         {
@@ -59,13 +61,17 @@ int main(int argc, char *argv[])
             {
             myRingLists->addRingNode(tmpRingNode);
             tmpRingNode = new ringNode;
+
             }
 
             myRingLists->printList();
 
 
+            myRingLists->clearList();
+            myDominoList->clearList();   /*unnecessary if no error occurs,
+                                         myRingLists->clearList() should empty myDominoList
+                                         and destructs the other objekts, its a safegurad*/
 
-            myDominoList->clearList();
         }
         else
         {

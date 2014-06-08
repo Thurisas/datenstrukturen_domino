@@ -2,6 +2,11 @@
 #define DOMINO_LIST_H
 #include <iostream>
 
+/**
+ * @brief The dominoList class
+ *
+ * A list of DominoNodes
+ */
 
 class dominoList
 {
@@ -27,6 +32,14 @@ dominoList::dominoList()
     this->setHead( NULL );
 }
 
+/**
+ * @brief dominoList::searchDominoNode
+ *
+ * looking for a domino(Node) with z on one side and swap the domino if z is on the rightside
+ *
+ * @param z
+ */
+
 dominoNode* dominoList::searchDominoNode(int z)
 {
     dominoNode* tmp = getHead();
@@ -42,6 +55,14 @@ dominoNode* dominoList::searchDominoNode(int z)
     }
     return NULL;
 }
+
+/**
+ * @brief dominoList::deleteNode
+ *
+ * deletes a dominoNode from the list, notice that the dominoNode or the domino wont be destructed
+ *
+ * @param node
+ */
 
 void dominoList::deleteNode(dominoNode* node)
 {
@@ -62,6 +83,13 @@ void dominoList::deleteNode(dominoNode* node)
         }
     }
 }
+
+/**
+ * @brief dominoList::clearList
+ *
+ * destructs the hole list with dominos and dominoNodes to release the memory
+ *
+ */
 
 void dominoList::clearList()
 {
@@ -105,7 +133,7 @@ void dominoList::printList()
 /**
  * @brief dominoList::addDominoNode
  *
- * insert sinlge domino at tail, pls notice that only one single domino will be added no list!
+ * insert sinlge domino at tail, pls notice that only one single domino will be added, no list!
  *
  * @param newDominoNode
  */

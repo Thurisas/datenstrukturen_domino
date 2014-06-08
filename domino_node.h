@@ -1,7 +1,11 @@
 #ifndef DOMINO_NODE_H
 #define DOMINO_NODE_H
-#include "domino.h"
 
+/**
+ * @brief The dominoNode class
+ *
+ * A dominonode, with dominoInfo = domino(stone)
+ */
 class dominoNode
 {
 private:

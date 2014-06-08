@@ -21,7 +21,7 @@ class domino
         int getLeftSide();
         int getRightSide();
 
-        void swap();
+        void swap();                    //swap Leftside<->Rightside
         void setDomino(int, int);
 
 };

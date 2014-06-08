@@ -52,6 +52,14 @@ ringNode* ringNode::getNext()
     return this->next;
 }
 
+/**
+ * @brief ringNode::buildRing
+ *
+ * build the ring of sorted dominos and delete used dominos from dominoList
+ *
+ * @param myDominoList
+ */
+
 bool ringNode::buildRing(dominoList* myDominoList)
 {
 

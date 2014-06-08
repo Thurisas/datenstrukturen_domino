@@ -16,7 +16,7 @@ class ringList
         void setHead(ringNode*);
         ringNode* getHead();
         void addRingNode(ringNode*);
-
+        void clearList();
         void printList();
 
 };
@@ -59,7 +59,6 @@ void ringList::printList()
     ringNode* tmpNodeRing = this->getHead();
     while(tmpNodeRing != NULL)
     {
-
         dominoNode* tmpNodeDomino = tmpNodeRing->getHead();
         do
         {
@@ -71,8 +70,39 @@ void ringList::printList()
             tmpNodeDomino = tmpNodeDomino->getNext();
         }
         while(tmpNodeDomino != tmpNodeRing->getHead());
-      std::cout<< std::endl;
+      std::cout << std::endl;
       tmpNodeRing = tmpNodeRing->getNext();
+    }
+}
+
+/**
+ * @brief ringList::clearList
+ *
+ * destructs the hole list of ring(list)s with dominos, dominoNodes and ringNodes to release the memory
+ *
+ */
+
+void ringList::clearList()
+{
+    while(this->getHead() != NULL )
+    {
+        ringNode* tmpRingNode  = this->getHead();
+        this->setHead( tmpRingNode->getNext());
+
+        dominoNode* tmpDominoNode = tmpRingNode->getHead()->getNext();
+        while(tmpDominoNode->getNext() != tmpRingNode->getHead()) tmpDominoNode = tmpDominoNode->getNext();
+        tmpDominoNode->setNext(NULL);
+
+
+        while(tmpRingNode->getHead() != NULL )
+        {
+            dominoNode* tmpNode  = tmpRingNode->getHead();
+            tmpRingNode->setHead( tmpRingNode->getHead()->getNext() );
+            delete tmpNode->getDominoInfo();
+            delete tmpNode;
+        }
+
+        delete tmpRingNode;
     }
 }
 
